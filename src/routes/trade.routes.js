@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { verifyJWT } from "../middlewares/verifyJWT.js";
+import axios from "axios";
 import {
   placeTrade,
   closeTrade,
