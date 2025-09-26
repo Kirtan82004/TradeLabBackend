@@ -30,4 +30,16 @@ router.get("/", getUserTrades);
 // Get single trade by ID
 router.get("/:tradeId", getTradeById);
 
+router.get("/test-binance", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
+    );
+    res.json({ success: true, data: response.data });
+  } catch (error) {
+    console.error("Binance fetch failed:", error.message);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 export default router;
