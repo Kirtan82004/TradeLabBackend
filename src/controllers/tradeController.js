@@ -8,7 +8,7 @@ import axios from "axios";
 import { io } from "../app.js";
 
 // 🔹 Helper: Get live price (Binance public API)
-const getLivePrice = async (symbol) => {
+const getLivePrice = async (pair) => {
   try {
     const res = await axios.get(`https://api.kraken.com/0/public/Ticker?pair=${pair}`);
     const data = res.data.result[Object.keys(res.data.result)[0]];
