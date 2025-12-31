@@ -15,6 +15,7 @@ const getLivePrice = async (symbol) => {
     );
     return parseFloat(res.data.price);
   } catch (error) {
+    console.log("live price error",error.message)
     throw new ApiError(500, "Failed to fetch live price");
   }
 };
