@@ -10,13 +10,11 @@ import { io } from "../app.js";
 // 🔹 Helper: Get live price (Binance public API)
 const getLivePrice = async (symbol) => {
   try {
-    const res = await axios.get(
-      `https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`
-    );
-    return parseFloat(res.data.price);
-  } catch (error) {
-    console.log("live price error",error.message)
-    throw new ApiError(500, "Failed to fetch live price");
+    const res = await axios.get(`https://api.kraken.com/0/public/Ticker?pair=${pair}`);
+    const data = res.data.result[Object.keys(res.data.result)[0]];
+    return parseFloat(data.c[0]); // last trade price
+  } catch (err) {
+   throw new ApiError(500, "Failed to fetch live price");
   }
 };
 
